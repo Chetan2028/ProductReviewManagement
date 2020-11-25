@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Data;
 
 namespace ProductReviewManagementDemo
 {
     public class Management
     {
+        //List to store Product Details
         List<ProductReview> listProductReview;
+
+        //Create a DataTable
+        DataTable table = new DataTable();
 
         /// <summary>
         /// UC1
@@ -136,6 +141,38 @@ namespace ProductReviewManagementDemo
                 Console.WriteLine("ProductID: " + product.ProductId + "  UserId : " + product.UserId + "  Rating : " + product.Rating +
               "  Review : " + product.Review + "  IsLike : " + product.isLike);
             }
+        }
+
+        /// <summary>
+        /// UC8
+        /// Creates the data table.
+        /// </summary>
+        public void CreateDataTable()
+        {
+            //Creating columns
+            table.Columns.Add("ProductId", typeof(int));
+            table.Columns.Add("UserId", typeof(int));
+            table.Columns.Add("Rating", typeof(double));
+            table.Columns.Add("Review", typeof(string));
+            table.Columns.Add("isLike", typeof(bool));
+
+            //Add data to columns
+            table.Rows.Add(1,1,3,"Nice",true);
+            table.Rows.Add(1, 1, 4, "Nice", true);
+            table.Rows.Add(2, 2, 5, "Better", true);
+            table.Rows.Add(3, 3, 10, "Best", true);
+            table.Rows.Add(4, 4, 9, "Best", true);
+            table.Rows.Add(5, 5, 5, "Better", true);
+            table.Rows.Add(6, 10, 6, "Better", false);
+            table.Rows.Add(7, 4, 4, "Nice", true);
+            table.Rows.Add(8, 11, 7, "Better", true);
+            table.Rows.Add(9, 15, 1, "Worst", true);
+            table.Rows.Add(10, 2, 8, "Best", false);
+            table.Rows.Add(11, 3, 5, "Better", true);
+            table.Rows.Add(12, 4, 9, "Best", true);
+            table.Rows.Add(13, 10, 10, "Best", true);
+            table.Rows.Add(14, 10, 2, "Worst", false);
+            table.Rows.Add(15, 10, 2.5, "Worst", false);
         }
     }
 }
