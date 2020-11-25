@@ -206,5 +206,22 @@ namespace ProductReviewManagementDemo
                 Console.WriteLine("ProductId : " + list.productid + "  Average Ratings : " + list.AverageRatings);
             }
         }
+
+        /// <summary>
+        /// UC11 --> to retrieve review message which contains 'nice'
+        /// Retrieves the review field.
+        /// </summary>
+        public void RetrieveReviewField()
+        {
+            var linqQuery = from products in table.AsEnumerable()
+                            where (products.Field<string>("Review") == "Nice".ToString())
+                            select products;
+            foreach (var product in linqQuery)
+            {
+                Console.WriteLine("ProductId : " + product.Field<int>("ProductId") + "  UserId : " + product.Field<int>("userId")
+                    + " Rating : " + product.Field<double>("Rating") + "  Review : " + product.Field<string>("Review")
+                    + "  IsLike : " + product.Field<bool>("isLike"));
+            }
+        }
     }
 }
