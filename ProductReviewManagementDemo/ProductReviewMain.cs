@@ -10,6 +10,7 @@ namespace ProductReviewManagementDemo
             Management management = new Management();
             management.AddProductsToList();
             management.CreateDataTable();
+            management.RetrieveDataFromTable();
         }
     }
 }
