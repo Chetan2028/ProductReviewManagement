@@ -157,7 +157,6 @@ namespace ProductReviewManagementDemo
             table.Columns.Add("isLike", typeof(bool));
 
             //Add data to columns
-            table.Rows.Add(1,1,3,"Nice",true);
             table.Rows.Add(1, 1, 4, "Nice", true);
             table.Rows.Add(2, 2, 5, "Better", true);
             table.Rows.Add(3, 3, 10, "Best", true);
@@ -173,6 +172,24 @@ namespace ProductReviewManagementDemo
             table.Rows.Add(13, 10, 10, "Best", true);
             table.Rows.Add(14, 10, 2, "Worst", false);
             table.Rows.Add(15, 10, 2.5, "Worst", false);
+            table.Rows.Add(16, 1, 3, "Nice", true);
+        }
+        /// <summary>
+        /// UC9 --> to retireve data from table using isLike column
+        /// Retrieves the data from table.
+        /// </summary>
+        public void RetrieveDataFromTable()
+        {
+            var recordData = from products in table.AsEnumerable()
+                             where (products.Field<bool>("isLike") == true)
+                             select products;
+
+            foreach (var product in recordData)
+            {
+                Console.WriteLine("ProductId : " + product.Field<int>("ProductId") + "  UserId : " + product.Field<int>("userId")
+                    + " Rating : " + product.Field<double>("Rating") + "  Review : " + product.Field<string>("Review") 
+                    + "  IsLike : " + product.Field<bool>("isLike"));
+            }
         }
     }
 }
