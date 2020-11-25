@@ -101,5 +101,24 @@ namespace ProductReviewManagementDemo
                 Console.WriteLine(list.ProductID + "-------------" + list.Count);
             }
         }
+
+        /// <summary>
+        /// UC5
+        /// Retrieves the product identifier and review.
+        /// </summary>
+        public void RetrieveProductIdAndReview()
+        {
+            var linqQuery = from products in listProductReview
+                            select new
+                            {
+                                ProductID = products.ProductId,
+                                Review = products.Review
+                            };
+
+            foreach (var list in linqQuery)
+            {
+                Console.WriteLine("ProductID : " + list.ProductID + "  Review : " + list.Review);
+            }
+        }
     }
 }
