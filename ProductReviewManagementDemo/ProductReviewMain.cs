@@ -8,9 +8,8 @@ namespace ProductReviewManagementDemo
         {
             Console.WriteLine("Welcome to Product Review Management");
             Management management = new Management();
-            management.AddProductsToList();
             management.CreateDataTable();
-            management.RetrieveDataFromTable();
+            management.GetAverageRatingsForProductId();
         }
     }
 }
