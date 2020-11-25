@@ -20,17 +20,17 @@ namespace ProductReviewManagementDemo
                 new ProductReview(){ProductId=1,UserId=1,Rating=5,Review="Nice",isLike=true},
                 new ProductReview(){ProductId=2,UserId=1,Rating=5,Review="Nice",isLike=true},
                 new ProductReview(){ProductId=3,UserId=2,Rating=7,Review="Better",isLike=true},
-                new ProductReview(){ProductId=5,UserId=2,Rating=10,Review="Best",isLike=true},
+                new ProductReview(){ProductId=4,UserId=2,Rating=10,Review="Best",isLike=true},
                 new ProductReview(){ProductId=5,UserId=3,Rating=6,Review="Better",isLike=true},
                 new ProductReview(){ProductId=6,UserId=4,Rating=6,Review="Better",isLike=true},
-                new ProductReview(){ProductId=6,UserId=5,Rating=1,Review="Worst",isLike=false},
+                new ProductReview(){ProductId=7,UserId=5,Rating=1,Review="Worst",isLike=false},
                 new ProductReview(){ProductId=8,UserId=10,Rating=9,Review="Best",isLike=true},
                 new ProductReview(){ProductId=9,UserId=4,Rating=2,Review="Worst",isLike=true},
-                new ProductReview(){ProductId=9,UserId=5,Rating=1,Review="Worst",isLike=false},
+                new ProductReview(){ProductId=10,UserId=5,Rating=1,Review="Worst",isLike=false},
                 new ProductReview(){ProductId=11,UserId=10,Rating=9,Review="Best",isLike=true},
                 new ProductReview(){ProductId=12,UserId=10,Rating=8,Review="Better",isLike=true},
                 new ProductReview(){ProductId=13,UserId=10,Rating=2,Review="Worst",isLike=false},
-                new ProductReview(){ProductId=13,UserId=10,Rating=8,Review="Best",isLike=true},
+                new ProductReview(){ProductId=14,UserId=10,Rating=8,Review="Best",isLike=true},
                 new ProductReview(){ProductId=15,UserId=10,Rating=8,Review="Better",isLike=true},
                 new ProductReview(){ProductId=16,UserId=10,Rating=3,Review="Worst",isLike=true},
             };
@@ -118,6 +118,23 @@ namespace ProductReviewManagementDemo
             foreach (var list in linqQuery)
             {
                 Console.WriteLine("ProductID : " + list.ProductID + "  Review : " + list.Review);
+            }
+        }
+
+        /// <summary>
+        /// UC6
+        /// Skips the top5 records and display other records.
+        /// </summary>
+        public void SkipTop5ProductsAndDisplayOtherRecords()
+        {
+            var linqQuery = (from products in listProductReview
+                             orderby products.Rating descending
+                             select products).Skip(5);
+
+            foreach (var product in linqQuery)
+            {
+                Console.WriteLine("ProductID: " + product.ProductId + "  UserId : " + product.UserId + "  Rating : " + product.Rating +
+              "  Review : " + product.Review + "  IsLike : " + product.isLike);
             }
         }
     }
