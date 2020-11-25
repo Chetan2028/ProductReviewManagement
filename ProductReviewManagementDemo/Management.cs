@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ProductReviewManagementDemo
 {
@@ -39,6 +40,23 @@ namespace ProductReviewManagementDemo
         public void GetProductsFromList()
         {
             foreach (var product in listProductReview)
+            {
+                Console.WriteLine("ProductID: " + product.ProductId + "  UserId : " + product.UserId + "  Rating : " + product.Rating +
+              "  Review : " + product.Review + "  IsLike : " + product.isLike);
+            }
+        }
+
+        /// <summary>
+        /// UC2
+        /// Retrieves the top 3  records with high rating.
+        /// </summary>
+        public void RetrieveTopRecordsWithHighRating()
+        {
+            var linqQuery = (from products in listProductReview
+                             orderby products.Rating descending
+                             select products).Take(3);
+
+            foreach (var product in linqQuery)
             {
                 Console.WriteLine("ProductID: " + product.ProductId + "  UserId : " + product.UserId + "  Rating : " + product.Rating +
               "  Review : " + product.Review + "  IsLike : " + product.isLike);
