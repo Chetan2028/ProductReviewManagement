@@ -159,18 +159,18 @@ namespace ProductReviewManagementDemo
             //Add data to columns
             table.Rows.Add(1, 1, 4, "Nice", true);
             table.Rows.Add(2, 2, 5, "Better", true);
-            table.Rows.Add(3, 3, 10, "Best", true);
+            table.Rows.Add(2, 3, 10, "Best", true);
             table.Rows.Add(4, 4, 9, "Best", true);
-            table.Rows.Add(5, 5, 5, "Better", true);
+            table.Rows.Add(4, 5, 5, "Better", true);
             table.Rows.Add(6, 10, 6, "Better", false);
             table.Rows.Add(7, 4, 4, "Nice", true);
-            table.Rows.Add(8, 11, 7, "Better", true);
+            table.Rows.Add(7, 11, 7, "Better", true);
             table.Rows.Add(9, 15, 1, "Worst", true);
             table.Rows.Add(10, 2, 8, "Best", false);
-            table.Rows.Add(11, 3, 5, "Better", true);
+            table.Rows.Add(10, 3, 5, "Better", true);
             table.Rows.Add(12, 4, 9, "Best", true);
             table.Rows.Add(13, 10, 10, "Best", true);
-            table.Rows.Add(14, 10, 2, "Worst", false);
+            table.Rows.Add(13, 10, 2, "Worst", false);
             table.Rows.Add(15, 10, 2.5, "Worst", false);
             table.Rows.Add(16, 1, 3, "Nice", true);
         }
@@ -189,6 +189,21 @@ namespace ProductReviewManagementDemo
                 Console.WriteLine("ProductId : " + product.Field<int>("ProductId") + "  UserId : " + product.Field<int>("userId")
                     + " Rating : " + product.Field<double>("Rating") + "  Review : " + product.Field<string>("Review") 
                     + "  IsLike : " + product.Field<bool>("isLike"));
+            }
+        }
+
+        /// <summary>
+        /// UC10
+        /// Gets the average ratings for product id.
+        /// </summary>
+        public void GetAverageRatingsForProductId()
+        {
+            var queryData = table.AsEnumerable().GroupBy(r => r.Field<int>("ProductId")).
+                Select(r => new { productid = r.Key, AverageRatings = r.Average(x => x.Field<double>("Rating")) });
+
+            foreach (var list in queryData)
+            {
+                Console.WriteLine("ProductId : " + list.productid + "  Average Ratings : " + list.AverageRatings);
             }
         }
     }
