@@ -223,5 +223,21 @@ namespace ProductReviewManagementDemo
                     + "  IsLike : " + product.Field<bool>("isLike"));
             }
         }
+
+        /// <summary>
+        /// UC12
+        /// Retrieves the data for a particular user id.
+        /// </summary>
+        public void RetrieveDataForAParticularUserID()
+        {
+            var linqQuery = table.AsEnumerable().OrderBy(x => x.Field<double>("Rating")).
+                Where(x => x.Field<int>("userId") == 10).
+                Select(o => new { UserID = o.Field<int>("userId"), Rating = o.Field<double>("Rating") });
+
+            foreach (var product in linqQuery)
+            {
+                Console.WriteLine("USERID : " + product.UserID + "  RATING : " + product.Rating );
+            }           
+        }
     }
 }
