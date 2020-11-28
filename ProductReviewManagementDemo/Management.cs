@@ -137,5 +137,18 @@ namespace ProductReviewManagementDemo
               "  Review : " + product.Review + "  IsLike : " + product.isLike);
             }
         }
+
+        /// <summary>
+        /// UC7
+        /// Retrieves Product id ad review using select
+        /// </summary>
+        public void RetrieveProductIDAndReviewsUsingSelect()
+        {
+            var recordData = listProductReview.Select(x => new { x.ProductId, x.Review });
+            foreach (var list in recordData)
+            {
+                Console.WriteLine("ProductId : " + list.ProductId + "  Review : " + list.Review );
+            }
+        }
     }
 }
